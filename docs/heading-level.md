@@ -3,7 +3,7 @@
 ## 1. Nivel estructural de encabezado en bloques
 
 El nivel (h2…h6) es independiente del estilo visual. La lógica vive en un único helper,
-`applyHeadingLevel(block)` en `scripts/scripts.js`; cada bloque solo lo llama al final de `decorate()`
+`applyHeadingLevel(block)` en `scripts/scripts.js`; cada bloque llama a `extractHeadingLevel(block)` al inicio y a `applyHeadingLevel(block)` al final de `decorate()`
 (hoy: `cards` y `teaser`).
 
 **Uso del autor (DA):** añadir la variante al nombre del bloque, p. ej. `Cards (heading-h3)`.
@@ -11,12 +11,15 @@ El primer encabezado del bloque pasa a ser h3 y el resto mantiene su desfase rel
 El aspecto no cambia: el encabezado conserva su estilo original mediante las clases `.h1`–`.h6`
 (`styles/styles.css`). Sin variante, el bloque no se toca.
 
-**Nuevo bloque:** `import { applyHeadingLevel } from '../../scripts/scripts.js';` y llamarlo al final del `decorate()`.
+**Nuevo bloque:** `import { applyHeadingLevel, extractHeadingLevel } from '../../scripts/scripts.js';` y llamarlos al inicio y al final del `decorate()`.
 Si el CSS del bloque selecciona por etiqueta (`h3`), usar `:is(h3, .h3)`.
 
-**Library:** la hoja *options* de la Library (columnas key/blocks/values/type) solo sirve para bloques
-clave-valor (`section-metadata`, `metadata`), no para variantes de bloque. Por eso las variantes
-`heading-h2`…`heading-h6` se ofrecen como variantes del bloque en la Library de bloques.
+**Desplegable en da.live (hoja options):** el bloque puede llevar una fila de configuración
+`heading-level | h4`. `extractHeadingLevel(block)` (al inicio de `decorate()`) la lee, la quita del
+bloque y la convierte en la variante `heading-hN`. Para ofrecerla como desplegable, añadir en la hoja
+*options* de la Library una fila con `key = heading-level`, `blocks = cards, teaser`,
+`values = h2|h3|h4|h5|h6` y `type = single`. Un valor no válido se ignora.
+Las dos formas (variante en el nombre o fila `heading-level`) son equivalentes.
 
 ## 2. Plugin de auditoría (`tools/plugins/heading-audit`)
 

@@ -65,9 +65,27 @@ export function moveInstrumentation(from, to) {
 }
 
 /**
+ * Reads the author's heading level from a `heading-level | h4` config row of the block
+ * (the Library "options" sheet offers it as a dropdown), removes that row from the block
+ * and turns it into the `heading-hN` variant class. Call it at the START of decorate(),
+ * before the block reads its rows. Does nothing when the row is missing or invalid.
+ * @param {Element} block the block element
+ */
+export function extractHeadingLevel(block) {
+  const row = [...block.children].find(
+    (r) => r.children[0]?.textContent.trim().toLowerCase() === 'heading-level',
+  );
+  if (!row) return;
+  const value = row.children[1]?.textContent.trim().toLowerCase();
+  if (/^h[2-6]$/.test(value)) block.classList.add(`heading-${value}`);
+  row.remove();
+}
+
+/**
  * Applies the author-selected structural heading level to a block.
- * The level is chosen with a block variant: `heading-h2` ... `heading-h6`
- * (e.g. "Cards (heading-h3)" in DA). The first heading of the block becomes the
+ * The level is chosen with a block variant `heading-h2` ... `heading-h6`
+ * (e.g. "Cards (heading-h3)" in DA) or with a `heading-level` row
+ * (see extractHeadingLevel). The first heading of the block becomes the
  * requested level and the remaining headings keep their relative offset (clamped to h1-h6).
  * The original visual style is kept through a `.hN` class, so changing the structure
  * never changes the look. Without a variant the block is left untouched.
