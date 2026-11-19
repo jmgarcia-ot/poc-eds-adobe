@@ -65,6 +65,34 @@ export function moveInstrumentation(from, to) {
 }
 
 /**
+ * Applies the author-selected structural heading level to a block.
+ * The level is chosen with a block variant: `heading-h2` ... `heading-h6`
+ * (e.g. "Cards (heading-h3)" in DA). The first heading of the block becomes the
+ * requested level and the remaining headings keep their relative offset (clamped to h1-h6).
+ * The original visual style is kept through a `.hN` class, so changing the structure
+ * never changes the look. Without a variant the block is left untouched.
+ * @param {Element} block the block element, call it at the end of decorate()
+ */
+export function applyHeadingLevel(block) {
+  const variant = [...block.classList].find((c) => /^heading-h[1-6]$/.test(c));
+  if (!variant) return;
+  const headings = [...block.querySelectorAll('h1, h2, h3, h4, h5, h6')];
+  if (!headings.length) return;
+  const target = Number(variant.slice(-1));
+  const base = Number(headings[0].tagName[1]);
+  headings.forEach((heading) => {
+    const original = Number(heading.tagName[1]);
+    const level = Math.min(6, Math.max(1, target + (original - base)));
+    if (level === original) return;
+    const el = document.createElement(`h${level}`);
+    [...heading.attributes].forEach(({ name, value }) => el.setAttribute(name, value));
+    el.classList.add(`h${original}`);
+    el.append(...heading.childNodes);
+    heading.replaceWith(el);
+  });
+}
+
+/**
  * load fonts.css and set a session storage flag
  */
 async function loadFonts() {

@@ -1,5 +1,5 @@
 import { createOptimizedPicture } from '../../scripts/aem.js';
-import { isSameOriginImage } from '../../scripts/scripts.js';
+import { applyHeadingLevel, isSameOriginImage } from '../../scripts/scripts.js';
 
 /* eslint-disable */
 export function decorateButtons(...buttons) {
@@ -67,4 +67,5 @@ export default function decorate(block) {
   const teaserDOM = generateTeaserDOM(props, block.classList);
   block.textContent = '';
   block.append(teaserDOM);
+  applyHeadingLevel(block);
 }

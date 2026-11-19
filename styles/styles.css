@@ -238,40 +238,52 @@ h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
   margin-top: 0.8em;
   margin-bottom: 0.25em;
   line-height: 1.25;
   scroll-margin: 40px;
 }
 
-h1 {
+h1,
+.h1 {
   font: normal normal normal 56px/56px Baskerville, serif;
   letter-spacing: var(--type-display-1-letter-spacing);
 }
 
-h2 {
+h2,
+.h2 {
   font: normal normal normal 48px/52px Baskerville, serif;
   letter-spacing: var(--type-display-2-letter-spacing);
 }
 
-h3 {
+h3,
+.h3 {
   font: normal normal normal 36px/42px Baskerville, serif;
   letter-spacing: var(--type-display-3-letter-spacing);
 }
 
-h4 {
+h4,
+.h4 {
   font: normal normal normal 32px/32px Baskerville, serif;
   letter-spacing: 0;
   margin-bottom: 10px;
 }
 
-h5 {
+h5,
+.h5 {
   font: normal normal normal 24px/30px Baskerville, serif;
   letter-spacing: 0
 }
 
-h6 {
+h6,
+.h6 {
   font: var(--type-headline-2-default-font);
   letter-spacing: var(--type-headline-2-default-letter-spacing);
 }

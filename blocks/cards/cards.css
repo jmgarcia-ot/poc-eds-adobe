@@ -89,7 +89,7 @@
   color: rgb(0 0 0 / 10%);
 }
 
-.numbered .cards-card-body h3 {
+.numbered .cards-card-body :is(h3, .h3) {
   font-size: 36px;
 }
 
@@ -134,7 +134,7 @@
     max-width: 600px;
   }
 
-  .numbered .cards-card-body h3 {
+  .numbered .cards-card-body :is(h3, .h3) {
     font-size: 48px;
     margin-top: 0;
   }
@@ -190,7 +190,7 @@
   }
 }
 
-.card-tiles h2 {
+.card-tiles :is(h2, .h2) {
   margin-top: 0;
   padding-top: 20px;
 }
