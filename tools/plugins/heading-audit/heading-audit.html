@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <title>Auditoría de encabezados</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="icon" href="data:,">
+    <script src="https://da.live/nx/utils/sdk.js" type="module"></script>
+    <script src="/tools/plugins/heading-audit/heading-audit.js" type="module"></script>
+    <style>
+      body { font-family: 'Adobe Clean', sans-serif; font-size: 14px; margin: 12px; }
+      #status { padding: 8px; border-radius: 4px; font-weight: 600; }
+      #status.ok { background: #e3f5e1; color: #1e5b17; }
+      #status.warn { background: #fff4d6; color: #7a4b00; }
+      ul { padding-left: 18px; }
+      #outline { list-style: none; padding: 0; font-family: monospace; }
+      button { margin-top: 8px; }
+    </style>
+  </head>
+  <body>
+    <div id="status">Analizando…</div>
+    <ul id="issues"></ul>
+    <h4>Esquema</h4>
+    <ul id="outline"></ul>
+    <button id="refresh" type="button">Volver a analizar</button>
+  </body>
+</html>

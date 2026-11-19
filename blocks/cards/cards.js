@@ -1,7 +1,10 @@
 import { createOptimizedPicture } from '../../scripts/aem.js';
-import { isSameOriginImage, moveInstrumentation } from '../../scripts/scripts.js';
+import {
+  applyHeadingLevel, extractHeadingLevel, isSameOriginImage, moveInstrumentation,
+} from '../../scripts/scripts.js';
 
 export default function decorate(block) {
+  extractHeadingLevel(block);
   /* change to ul, li */
   const ul = document.createElement('ul');
   [...block.children].forEach((row) => {
@@ -23,4 +26,5 @@ export default function decorate(block) {
   });
   block.textContent = '';
   block.append(ul);
+  applyHeadingLevel(block);
 }

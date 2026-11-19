@@ -1,5 +1,5 @@
 import { createOptimizedPicture } from '../../scripts/aem.js';
-import { isSameOriginImage } from '../../scripts/scripts.js';
+import { applyHeadingLevel, extractHeadingLevel, isSameOriginImage } from '../../scripts/scripts.js';
 
 /* eslint-disable */
 export function decorateButtons(...buttons) {
@@ -62,9 +62,11 @@ export function generateTeaserDOM(props, classes) {
 }
 
 export default function decorate(block) {
+  extractHeadingLevel(block);
   // get the first and only cell from each row
   const props = [...block.children].map((row) => row.firstElementChild);
   const teaserDOM = generateTeaserDOM(props, block.classList);
   block.textContent = '';
   block.append(teaserDOM);
+  applyHeadingLevel(block);
 }
