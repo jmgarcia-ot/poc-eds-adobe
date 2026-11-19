@@ -16,7 +16,7 @@ export default function decorate(block) {
 
   const left = document.createElement('div');
   left.className = 'offer-left';
-  const headline = document.createElement('h4');
+  const headline = document.createElement('h2');
   headline.className = 'headline';
   headline.textContent = headlineCell ? headlineCell.textContent.trim() : '';
   const detail = document.createElement('p');
