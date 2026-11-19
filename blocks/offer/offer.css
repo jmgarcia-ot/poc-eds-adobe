@@ -23,7 +23,7 @@
   justify-content: space-around;
 }
 
-.offer-left h4,p {
+.offer-left h2,p {
   margin: 10px;
 }
 
@@ -34,7 +34,7 @@
 }
 
 @media (width >= 900px) {
-  .offer-left h4,p {
+  .offer-left h2,p {
     margin: 0;
   }
 }

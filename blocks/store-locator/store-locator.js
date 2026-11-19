@@ -19,7 +19,7 @@ export default function decorate(block) {
   shopfinder.className = 'shopfinder';
   shopfinder.innerHTML = `
     <div class="sidepanel">
-      <h3 class="sidepanel__title"></h3>
+      <h2 class="sidepanel__title"></h2>
       <div class="search">
         <p class="search__title"></p>
         <form class="search__box">

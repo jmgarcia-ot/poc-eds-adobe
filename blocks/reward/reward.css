@@ -38,7 +38,7 @@
   }
 }
 
-.reward-left h4,p {
+.reward-left h2,p {
   margin: 10px;
 }
 
@@ -48,7 +48,7 @@
   justify-content: center;
 }
 
-.reward-left h6{
+.reward-left h2 {
   font-size: 32px;
   font-family: Baskerville, serif;
   font-weight: normal;
@@ -57,7 +57,7 @@
 }
 
 @media (width >= 900px) {
-  .reward-left h4,p {
+  .reward-left h2,p {
     margin: 0;
   }
 }
